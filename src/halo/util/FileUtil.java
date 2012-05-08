@@ -16,6 +16,20 @@ public class FileUtil {
     public static final int FILE_SIZE_TYPE_M = 1;
 
     /**
+     * 获得当前应的根目录
+     * 
+     * @return
+     */
+    public static String getAppPath() {
+        return Thread.currentThread().getContextClassLoader().getResource("")
+                .getPath();
+    }
+
+    public static String getAppFilePath(String fileRelPath) {
+        return getAppPath() + fileRelPath;
+    }
+
+    /**
      * 复制文件
      * 
      * @param source
