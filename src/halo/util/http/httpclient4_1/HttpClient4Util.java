@@ -13,6 +13,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
@@ -42,6 +43,14 @@ public class HttpClient4Util {
             IOException {
         HttpGet httpGet = new HttpGet(url);
         return httpclient.execute(httpGet);
+    }
+
+    public HttpResponse doPostBody(String url, String string, String encoding)
+            throws ClientProtocolException, IOException {
+        HttpEntity entity = new StringEntity(string, encoding);
+        HttpPost httpPost = new HttpPost(url);
+        httpPost.setEntity(entity);
+        return httpclient.execute(httpPost);
     }
 
     public HttpResponse doPost(String url, HttpParameter httpParameter,
