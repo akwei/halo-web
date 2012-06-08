@@ -123,6 +123,9 @@ public class HttpClient4Util {
         if (entity != null) {
             EntityUtils.consume(entity);
         }
+    }
+
+    public void shutdown() {
         this.httpclient.getConnectionManager().shutdown();
     }
 
