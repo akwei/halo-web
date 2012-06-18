@@ -19,6 +19,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -59,6 +60,8 @@ public class HkRequestImpl extends HttpServletRequestWrapper implements
     private File[] files;
 
     private Map<String, UploadFile> uploadFileMap = null;
+
+    private Locale currentLocale;
 
     public HkRequestImpl(HttpServletRequest request) {
         super(request);
@@ -564,5 +567,13 @@ public class HkRequestImpl extends HttpServletRequestWrapper implements
             this.dateFormat = new SimpleDateFormat(DATE_FORMAT);
         }
         return dateFormat;
+    }
+
+    public void setCurrentLocale(Locale currentLocale) {
+        this.currentLocale = currentLocale;
+    }
+
+    public Locale getCurrentLocale() {
+        return currentLocale;
     }
 }

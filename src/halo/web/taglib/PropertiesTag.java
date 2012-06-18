@@ -1,7 +1,7 @@
 package halo.web.taglib;
 
-import halo.web.i18n.HaloI18n;
 import halo.web.i18n.HaloResource;
+import halo.web.util.WebCnf;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,11 +14,9 @@ public class PropertiesTag extends BaseTag {
 
     private static final long serialVersionUID = -2452461789404041648L;
 
-    private int DEF_SIZE = 4;
+    private final int DEF_SIZE = 4;
 
     private Object key;
-
-    private String resource;
 
     private String arg0;
 
@@ -31,28 +29,14 @@ public class PropertiesTag extends BaseTag {
     @Override
     protected void adapter(JspWriter writer) throws IOException {
         String result = null;
-        Locale locale = (Locale) this.getRequest().getAttribute(
-                HaloI18n.I18N_KEY);
-        if (locale == null) {
-            locale = Locale.SIMPLIFIED_CHINESE;
-        }
+        Locale locale = this.getHkRequest().getCurrentLocale();
         if (arg0 == null && arg1 == null && arg2 == null && arg3 == null) {
-            if (resource == null) {
-                result = HaloResource.getDefText(locale, key.toString());
-            }
-            else {
-                result = HaloResource.getText(locale, resource, key.toString());
-            }
+            result = HaloResource.getText(locale, WebCnf.getInstance()
+                    .getI18nResourceName(), key.toString());
         }
         else {
-            if (resource == null) {
-                result = HaloResource.getDefText(locale, key.toString(),
-                        this.buildArg());
-            }
-            else {
-                result = HaloResource.getText(locale, resource, key.toString(),
-                        this.buildArg());
-            }
+            result = HaloResource.getText(locale, WebCnf.getInstance()
+                    .getI18nResourceName(), key.toString(), this.buildArg());
         }
         writer.append(result);
     }
@@ -84,10 +68,6 @@ public class PropertiesTag extends BaseTag {
 
     public void setKey(Object key) {
         this.key = key;
-    }
-
-    public void setResource(String resource) {
-        this.resource = resource;
     }
 
     public void setArg0(String arg0) {

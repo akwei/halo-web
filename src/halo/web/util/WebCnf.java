@@ -44,6 +44,16 @@ public class WebCnf implements InitializingBean {
 
     private boolean mustCheckUpload;
 
+    private String i18nResourceName = "i18n";
+
+    public void setI18nResourceName(String i18nResourceName) {
+        this.i18nResourceName = i18nResourceName;
+    }
+
+    public String getI18nResourceName() {
+        return i18nResourceName;
+    }
+
     public void setJspRootPath(String jspRootPath) {
         this.jspRootPath = jspRootPath;
     }

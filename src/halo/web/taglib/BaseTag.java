@@ -1,5 +1,7 @@
 package halo.web.taglib;
 
+import halo.web.action.HkRequest;
+
 import java.io.IOException;
 
 import javax.servlet.ServletContext;
@@ -62,6 +64,10 @@ public abstract class BaseTag extends BodyTagSupport {
 
     protected HttpServletRequest getRequest() {
         return (HttpServletRequest) pageContext.getRequest();
+    }
+
+    protected HkRequest getHkRequest() {
+        return (HkRequest) pageContext.getRequest();
     }
 
     protected HttpServletResponse getResponse() {

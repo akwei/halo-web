@@ -1,8 +1,8 @@
 package halo.web.taglib;
 
 import halo.util.DataUtil;
-import halo.web.i18n.HaloI18n;
 import halo.web.i18n.HaloResource;
+import halo.web.util.WebCnf;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -36,16 +36,13 @@ public class OptionTag extends BaseTag {
         }
         writer.append(">");
         if (res) {
-            Locale locale = (Locale) this.getRequest().getAttribute(
-                    HaloI18n.I18N_KEY);
-            if (locale == null) {
-                locale = Locale.SIMPLIFIED_CHINESE;
-            }
+            Locale locale = this.getHkRequest().getCurrentLocale();
             String v = null;
             if (data != null) {
                 v = data.toString();
             }
-            writer.append(HaloResource.getDefText(locale, v));
+            writer.append(HaloResource.getText(locale, WebCnf.getInstance()
+                    .getI18nResourceName(), v));
         }
         else {
             if (this.data != null) {

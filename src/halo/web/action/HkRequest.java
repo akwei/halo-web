@@ -2,6 +2,7 @@ package halo.web.action;
 
 import java.io.File;
 import java.text.DateFormat;
+import java.util.Locale;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -131,4 +132,8 @@ public interface HkRequest extends HttpServletRequest {
      * @param dateFormat
      */
     void setDateFormat(DateFormat dateFormat);
+
+    void setCurrentLocale(Locale locale);
+
+    Locale getCurrentLocale();
 }

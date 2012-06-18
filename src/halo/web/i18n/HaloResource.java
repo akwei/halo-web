@@ -11,7 +11,9 @@ import java.util.ResourceBundle;
  */
 public class HaloResource {
 
-    private static String resource = "resource";
+    public static String getText(String resource, String key, Object... args) {
+        return HaloResource.getText(null, resource, key, args);
+    }
 
     /**
      * 获取指定地域的配置文件中，对应key的内容输出
@@ -28,7 +30,13 @@ public class HaloResource {
      */
     public static String getText(Locale locale, String resource, String key,
             Object... args) {
-        ResourceBundle rb = ResourceBundle.getBundle(resource, locale);
+        ResourceBundle rb = null;
+        if (locale == null) {
+            rb = ResourceBundle.getBundle(resource);
+        }
+        else {
+            rb = ResourceBundle.getBundle(resource, locale);
+        }
         String value;
         try {
             if (args == null) {
@@ -43,30 +51,5 @@ public class HaloResource {
             return key;
         }
         return MessageFormat.format(value, args);
-    }
-
-    /**
-     * 获取指定地域的配置文件中，对应key的内容输出。资源文件名称默认为"resource"
-     * 
-     * @param locale
-     * @param key
-     * @param args
-     * @return
-     */
-    public static String getDefText(Locale locale, String key, Object... args) {
-        return getText(locale, resource, key, args);
-    }
-
-    /**
-     * 获取指定地域的配置文件中，对应key的内容输出。资源文件名称默认为resource，地域默认为
-     * {@link Locale#SIMPLIFIED_CHINESE}
-     * 
-     * @param key
-     * @param args
-     * @return
-     */
-    public static String getDefText(String key, Object... args) {
-        Locale locale = Locale.SIMPLIFIED_CHINESE;
-        return getDefText(locale, key, args);
     }
 }
