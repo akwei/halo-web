@@ -28,34 +28,6 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>limitlen</name>
-		<tag-class>halo.web.taglib.LimitLenTag</tag-class>
-		<body-content>empty</body-content>
-		<description>获取指定长度的字符串</description>
-		<attribute>
-			<name>value</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>len</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>withchar</name>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>tohtml</name>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>onerow</name>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-	<tag>
 		<name>actioninvoke</name>
 		<tag-class>halo.web.taglib.ActionInvokeTag</tag-class>
 		<body-content>empty</body-content>
