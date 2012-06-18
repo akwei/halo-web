@@ -5,9 +5,7 @@ import halo.util.ClassInfoFactory;
 import halo.util.DataUtil;
 import halo.web.action.upload.cos.ExceededSizeException;
 import halo.web.util.MessageUtil;
-import halo.web.util.PageSupport;
 import halo.web.util.ServletUtil;
-import halo.web.util.SimplePage;
 import halo.web.util.WebCnf;
 
 import java.io.File;
@@ -319,7 +317,7 @@ public class HkRequestImpl extends HttpServletRequestWrapper implements
     }
 
     @Override
-    public Object getSessionValue(String name) {
+    public Object getSessionAttr(String name) {
         return ServletUtil.getSessionValue(getHttpServletRequest(), name);
     }
 
@@ -386,24 +384,6 @@ public class HkRequestImpl extends HttpServletRequestWrapper implements
     }
 
     @Override
-    public int getPage() {
-        return ServletUtil.getPage(getHttpServletRequest());
-    }
-
-    @Override
-    public PageSupport getPageSupport(int page, int size) {
-        PageSupport pageSupport = PageSupport.getInstance(this.getPage(), size);
-        getHttpServletRequest().setAttribute(WebCnf.PAGESUPPORT_ATTRIBUTE,
-                pageSupport);
-        return pageSupport;
-    }
-
-    @Override
-    public PageSupport getPageSupport(int size) {
-        return this.getPageSupport(this.getPage(), size);
-    }
-
-    @Override
     public void setMessage(String msg) {
         this.setAttribute(MessageUtil.MESSAGE_NAME, msg);
     }
@@ -421,17 +401,6 @@ public class HkRequestImpl extends HttpServletRequestWrapper implements
     @Override
     public void invalidateSession() {
         this.getHttpServletRequest().getSession().invalidate();
-    }
-
-    public int getPageBegin(int size) {
-        int page = this.getPage();
-        getHttpServletRequest().setAttribute("page", page);
-        return (page - 1) * size;
-    }
-
-    @Override
-    public SimplePage getSimplePage(int size) {
-        return ServletUtil.getSimplePage(getHttpServletRequest(), size);
     }
 
     @Override

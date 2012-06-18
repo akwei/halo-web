@@ -1,8 +1,5 @@
 package halo.web.action;
 
-import halo.web.util.PageSupport;
-import halo.web.util.SimplePage;
-
 import java.io.File;
 import java.text.DateFormat;
 
@@ -11,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface HkRequest extends HttpServletRequest {
 
-    Object getSessionValue(String name);
+    Object getSessionAttr(String name);
 
     Number getNumber(String key);
 
@@ -85,12 +82,6 @@ public interface HkRequest extends HttpServletRequest {
 
     Cookie getCookie(String name);
 
-    PageSupport getPageSupport(int page, int size);
-
-    PageSupport getPageSupport(int size);
-
-    int getPage();
-
     void setMessage(String msg);
 
     void setSessionMessage(String msg);
@@ -100,8 +91,6 @@ public interface HkRequest extends HttpServletRequest {
     void removeSessionAttr(String name);
 
     void invalidateSession();
-
-    SimplePage getSimplePage(int size);
 
     void reSetAttribute(String name);
 

@@ -26,8 +26,6 @@ public class WebCnf implements InitializingBean {
 
     public static final String SIMPLEPAGE_ATTRIBUTE = "COM.HALO.CACTUS.SIMPLEPAGE.ATTRIBUTE";
 
-    public static final String PAGESUPPORT_ATTRIBUTE = "COM.HALO.CACTUS.PAGESUPPORT.ATTRIBUTE";
-
     private static WebCnf webCnfObj;
 
     public static WebCnf getInstance() {
@@ -36,6 +34,8 @@ public class WebCnf implements InitializingBean {
 
     private String uploadFileTempPath = "/halotemp/";
 
+    private String jspRootPath = "/WEB-INF/";
+
     private List<String> fileUploadCheckUriCnfList;
 
     private final List<UploadFileCheckCnf> uploadFileCheckCnfs = new ArrayList<UploadFileCheckCnf>();
@@ -43,6 +43,14 @@ public class WebCnf implements InitializingBean {
     private final Map<String, UploadFileCheckCnf> map = new HashMap<String, UploadFileCheckCnf>();
 
     private boolean mustCheckUpload;
+
+    public void setJspRootPath(String jspRootPath) {
+        this.jspRootPath = jspRootPath;
+    }
+
+    public String getJspRootPath() {
+        return jspRootPath;
+    }
 
     /**
      * 设置是否需要进行字符转码

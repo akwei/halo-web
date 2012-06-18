@@ -26,8 +26,6 @@ public class ServletUtil {
 
     public static final String ACCEPT = "accept";
 
-    private static final String PAGE_ATTR_KEY = "page";
-
     public static boolean NEED_CHARSET_ENCODE = true;
 
     /**
@@ -196,7 +194,7 @@ public class ServletUtil {
         if (t.length() == 0) {
             return "";
         }
-        if (NEED_CHARSET_ENCODE) {
+        if (!NEED_CHARSET_ENCODE) {
             return t;
         }
         if (request.getMethod().equalsIgnoreCase(HTTP_METHOD_POST)) {
@@ -208,22 +206,6 @@ public class ServletUtil {
         catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static int getPage(HttpServletRequest request) {
-        int page = getInt(request, PAGE_ATTR_KEY);
-        if (page < 1) {
-            page = 1;
-        }
-        request.setAttribute(PAGE_ATTR_KEY, page);
-        return page;
-    }
-
-    public static SimplePage getSimplePage(HttpServletRequest request, int size) {
-        int page = getPage(request);
-        SimplePage simplePage = new SimplePage(size, page);
-        request.setAttribute(WebCnf.SIMPLEPAGE_ATTRIBUTE, simplePage);
-        return simplePage;
     }
 
     public static long getLong(HttpServletRequest request, String key) {

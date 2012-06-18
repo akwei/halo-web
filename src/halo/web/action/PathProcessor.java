@@ -12,8 +12,6 @@ public class PathProcessor {
 
     protected static final String HTTPS_BEGIN = "https://";
 
-    protected static final String TEST_BEGIN = "t:";
-
     protected static final String PATH_SEPARATOR = "/";
 
     protected static final String CMD_REDIRECT_INAPP = "r:";
@@ -70,9 +68,6 @@ public class PathProcessor {
     public static void processResult(String result, HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         if (result == null) {
-            return;
-        }
-        if (result.startsWith(TEST_BEGIN)) {
             return;
         }
         String path = null;
