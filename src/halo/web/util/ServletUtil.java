@@ -194,10 +194,10 @@ public class ServletUtil {
         if (t.length() == 0) {
             return "";
         }
-        if (!NEED_CHARSET_ENCODE) {
+        if (request.getMethod().equalsIgnoreCase(HTTP_METHOD_POST)) {
             return t;
         }
-        if (request.getMethod().equalsIgnoreCase(HTTP_METHOD_POST)) {
+        if (!NEED_CHARSET_ENCODE) {
             return t;
         }
         try {
