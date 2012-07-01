@@ -34,8 +34,6 @@ public class WebCnf implements InitializingBean {
 
     private String uploadFileTempPath = "/halotemp/";
 
-    private String jspRootPath = "/WEB-INF/";
-
     private List<String> fileUploadCheckUriCnfList;
 
     private final List<UploadFileCheckCnf> uploadFileCheckCnfs = new ArrayList<UploadFileCheckCnf>();
@@ -52,14 +50,6 @@ public class WebCnf implements InitializingBean {
 
     public String getI18nResourceName() {
         return i18nResourceName;
-    }
-
-    public void setJspRootPath(String jspRootPath) {
-        this.jspRootPath = jspRootPath;
-    }
-
-    public String getJspRootPath() {
-        return jspRootPath;
     }
 
     /**
