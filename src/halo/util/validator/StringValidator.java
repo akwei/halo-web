@@ -1,7 +1,6 @@
 package halo.util.validator;
 
 import halo.util.DataUtil;
-import halo.util.JsonObj;
 
 /**
  * string 表达式写法

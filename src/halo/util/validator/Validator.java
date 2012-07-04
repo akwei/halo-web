@@ -1,6 +1,5 @@
 package halo.util.validator;
 
-import halo.util.JsonObj;
 
 public interface Validator {
 
