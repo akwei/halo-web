@@ -87,6 +87,10 @@ public class ObjectValidator {
         Validator validator;
         for (Entry<String, String> e : set) {
             field = classInfo.getField(e.getKey());
+            if (field == null) {
+                throw new RuntimeException("no field in class[ "
+                        + classInfo.getClazz().getName() + " ]");
+            }
             try {
                 value = field.get(instance);
                 this.parseExpr(e.getValue());
