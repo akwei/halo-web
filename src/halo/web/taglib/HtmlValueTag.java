@@ -48,10 +48,18 @@ public class HtmlValueTag extends BaseTag {
             return;
         }
         if (this.textarea) {
-            writer.append(DataUtil.toHtmlSimple(this.value).replaceAll("<br/>",
-                    "\n"));
+            String v = DataUtil.toHtmlSimple(this.value).replaceAll("<br/>",
+                    "\n");
+            if (this.encode) {
+                v = DataUtil.urlEncoder(v);
+            }
+            writer.append(v);
             return;
         }
-        writer.append(DataUtil.toHtmlSimple(this.value));
+        String v = DataUtil.toHtmlSimple(this.value);
+        if (this.encode) {
+            v = DataUtil.urlEncoder(v);
+        }
+        writer.append(v);
     }
 }
